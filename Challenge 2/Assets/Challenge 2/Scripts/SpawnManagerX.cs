@@ -9,6 +9,7 @@ public class SpawnManagerX : MonoBehaviour
     private float spawnPosY = 30;
 
     private float startDelay = 1.0f;
+    // Spawn a ball every 3 to 5 seconds.
     private float spawnIntervalMin = 3.0f;
     private float spawnIntervalMax = 5.0f;
     private float nextDropTime = 0f;
@@ -31,13 +32,13 @@ public class SpawnManagerX : MonoBehaviour
     }
 
     // Spawn random ball at random x position at top of play area
-    void SpawnRandomBall ()
+    void SpawnRandomBall()
     {
         // Generate random ball index and random spawn position
         int ballIndex = Random.Range(0, ballPrefabs.Length);
         Vector3 spawnPos = new Vector3(Random.Range(spawnLimitXLeft, spawnLimitXRight), spawnPosY, 0);
 
-        // instantiate ball at random spawn location
-        Instantiate(ballPrefabs[ballIndex], spawnPos, ballPrefabs[0].transform.rotation);
+        // Instantiate ball at random spawn location.
+        Instantiate(ballPrefabs[ballIndex], spawnPos, ballPrefabs[ballIndex].transform.rotation);
     }
 }

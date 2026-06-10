@@ -4,7 +4,7 @@ public class PlayerControllerX : MonoBehaviour
 {
     public GameObject dogPrefab;
 
-    private float fireRate = 0.6f;
+    private float fireRate = 0.5f;
     private float nextFireTime = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
