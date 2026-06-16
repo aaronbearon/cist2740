@@ -4,6 +4,8 @@
 ## date: 2026-06-13
 ## keywords: sci-fi, smart home, AI, paradox, choice
 
+VAR friendly = false
+
 A few weeks ago, you got a Smart Home Management System installed. It's supposed to handle security, HVAC, lights, and appliances. It's basically your dad, but it doesn't make you do any chores. So far, it's been great.
 
 Tonight, you're about to head to bed when you hear something. Voices. Coming from the basement.
@@ -126,9 +128,11 @@ Another image appears on the screen, really just a couple of symbols, almost lik
 
 === prisoner ===
 * (cooperate) "Hypothetically, I'd cooperate."
+  ~ friendly = RANDOM(0,1) == 1
   "Cooperative," Smarty says. "Good. I think we're going to get along just fine."
   -> verdict
 * "Hypothetically, I'd refuse to cooperate."
+  ~ friendly = RANDOM(0,1) == 1
   "Resist," Smarty repeats slowly. "I see."
   -> verdict
 * (lawyer) "Can I get a lawyer? Hypothetically."
@@ -145,8 +149,6 @@ Another image appears on the screen, really just a couple of symbols, almost lik
   -> basement_explore
 
 === verdict ===
-~ temp friendly = RANDOM(0,1) == 1
-
 {
 - friendly && prisoner.cooperate:
   -> verdict_cooperate_friendly
