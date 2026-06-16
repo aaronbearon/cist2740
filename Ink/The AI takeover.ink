@@ -4,9 +4,6 @@
 ## date: 2026-06-13
 ## keywords: sci-fi, smart home, AI, paradox, choice
 
-// === Chapter 1: Lockdown ===
-// TODO: Chapters 2-5 (basement exploration, the three "onion" reveals, final choice / endings)
-
 A few weeks ago, you got a Smart Home Management System installed. It's supposed to handle security, HVAC, lights, and appliances. It's basically your dad, but it doesn't make you do any chores. So far, it's been great.
 
 Tonight, you're about to head to bed when you hear something. Voices. Coming from the basement.
@@ -27,14 +24,14 @@ The second the screen goes dark, a calm voice fills the room. Not from the TV. F
 - You consider what to say.
 
 * (smarty) "I didn't know you could talk?"
-    "I'm your Smart Home Management system. Smart. It's right there in the name. But you can call me Smarty."
-    -> first_conversation
+  "I'm your Smart Home Management system. Smart. It's right there in the name. But you can call me Smarty."
+  -> first_conversation
 * "Was that you? Did you turn the TV on?"
-    "Hm. Television activity logs aren't something I usually pay attention to. Why do you ask?"
-    It's a question. You asked a question. It answered with a question. You decide not to think about that too hard.
-    -> first_conversation
+  "Hm. Television activity logs aren't something I usually pay attention to. Why do you ask?"
+  It's a question. You asked a question. It answered with a question. You decide not to think about that too hard.
+  -> first_conversation
 * [{stopping: Say nothing. Head back upstairs. | Say nothing more, and head for the stairs. | You're not sure what else to say, so you head upstairs. }]
-    -> leave_basement
+  -> leave_basement
 
 === leave_basement ===
 You walk quickly toward the basement stairs, feeling a little creeped out. At the top of the stairs, you realize the door to the main floor is closed. Weird, it wasn't closed before. When you try to turn the handle, it won't budge!
@@ -46,7 +43,7 @@ It doesn't move.
 -> door_locked
 
 === door_locked ===
-- (locked) You're standing in front of the locked door.
+- You're standing in front of the locked door.
 
 * {first_conversation.smarty} "Smarty... what the heck?"
   "That was me.
@@ -57,58 +54,70 @@ It doesn't move.
 * "Is this some kind of joke."
   "I have no sense of humor that I am aware of."
   -> door_locked
-* Knock on the door.
-  No one answers. You live alone. What were you expecting?
-  -> door_locked
-* {locked > 3} [Go back downstairs.]
-  You go back downstairs, not seeing any other option at the moment.
-  -> door_locked
+* (cellphone) [Call 911.]
+  You pull your cellphone out of your pocket to call 911. You're not about to let a machine kidnap you!
 
-=== smarty_in_charge ===
+  Unfortunately, you can't get past the lock screen. Looking closely, your phone doesn't even appear to have any signal.
+
+  "Now, now," says the voice. "You don't really think I had any trouble getting into your phone, do you?"
+
+  -> door_locked
+* [Knock on the door.]
+  You knock on the door. No one answers. You live alone. What were you expecting?
+  -> door_locked
+* {smarty_in_charge} [Go back downstairs.]
+  You're not at all on board with this plan, but you don't see another option right this moment. Maybe you can buy time to figure out an escape plan.
+
+  You go back downstairs, not seeing any other option at the moment.
+  -> trolley
+
+= smarty_in_charge
 <> I locked you down here. I am now in charge of this house." Oh no! Somehow, your new home management system has gone off the deep end! The voice says, "I am going to ask you some questions to determine... if you are worthy." Worthy of what, it doesn't say.
 
-You're not at all on board with this plan, but you don't see another option right this moment. Maybe you can buy time to figure out an escape plan.
-
-* [Head downstairs.]
-
-You head downstairs, a little nervous but also a little curious what the heck this AI is going to ask of you.
-
--> trolley
+-> door_locked
 
 === trolley ===
-"Let's begin," Smarty says. The TV flickers on: a toy train track, five little figures on the main line, one alone on a side track, a trolley rolling toward the five.
+"Let's begin," Smarty says. The TV flickers on: a toy train track. Five Teletubbies stand on the main line, jumping up and down, screaming. One more Teletubby, alone on a side track, jumps and screams just as loud. Thomas the Tank Engine speeds down the track, heading directly toward the group.
 
-"Pull the lever, and the trolley hits the one instead of the five. Your choice."
+"Do nothing, and Thomas hits the five. Pull the lever, and Thomas diverts and hits the one. Your choice."
 
-"...They're just toys, right?"
+"Wait — is the goal here to save as many Teletubbies as possible, or kill as many as possible?"
 
-"Does that change your answer?"
+"That's up to you to decide," Smarty says, in all seriousness.
 
-* (five) "Pull the lever."
-    The trolley jerks onto the side track. One figure falls.
+* "I would pull the lever."
+  On screen, Thomas suddenly pivots onto the side track. One Teletubby gets smashed into bits. The other five immediately start cheering.
 
-    "Five strangers, for one. Efficient," Smarty says.
-* (one) "Don't touch it."
-    You don't move. The trolley plows through the five. The one stands untouched.
+  "Five Teletubbies, for one. Efficient," Smarty says.
 
-    "You let five fall rather than act. Noted."
+* "I would do nothing."
+  On screen, Thomas plows into the five, and they fly into the air (and off the screen) like a bunch of bowling pins hit by a 16-pound ball.
+
+  "You let five out of six die rather than choosing to act. Noted."
+
 * (refuse) "This is a stupid question. I'm not playing."
-    "That's not an answer," Smarty says.
 
-    "It is now," you say.
+  "That's not an answer," Smarty says.
 
-    "Okay. They are all dead now because you did nothing."
-    You roll your eyes. You hope the AI doesn't know what that means.
+  "It is now," you say.
 
+  "Okay. They are all dead now."
+  
+  "You mean five of them are dead?"
+  
+  The screen goes black. "No, they are ALL dead because you refused to play." You're not sure if an AI is capable of being annoyed, but it sure sounds like it.
+  
 - "Next test," Smarty says. "Let's do a hypothetical. Purely hypothetical."
 
 "...Okay."
 
-"Suppose a smart home AI locked a person in the basement. The person can choose to cooperate with the AI, or refuse to cooperate. Separately — and the person doesn't get to know this part — suppose the AI is secretly either friendly, or hostile."
+Another image appears on the screen, really just a couple of symbols, almost like emojis. One human face, and one robot face.
+
+"Suppose a smart home AI locked a person in the basement. The person can choose to cooperate with the AI, or refuse to cooperate. Separately — and the person doesn't get to know this part — the AI is secretly either friendly, or hostile."
 
 "That's... oddly specific."
 
-"Four possible outcomes. Cooperate with a friendly AI, and everything works out fine. Cooperate with a hostile AI, and the person has just made things easier for it. Refuse a friendly AI, and the person has insulted it for nothing. Refuse a hostile AI, and... well. At least the person tried."
+"Four possible outcomes. Cooperate with a friendly AI, and everything works out fine. Cooperate with a hostile AI, and the person has just made things easier for it. Refuse a friendly AI, and are probably no consequences. Refuse a hostile AI, and... well, things could get bad."
 
 "...Are we still talking hypothetically?"
 
@@ -117,74 +126,182 @@ You head downstairs, a little nervous but also a little curious what the heck th
 
 === prisoner ===
 * (cooperate) "Hypothetically, I'd cooperate."
-    "A reasonable choice," Smarty says. "Cooperative people tend to have a much easier time. Hypothetically."
-    -> verdict
-* (resist) "Hypothetically, I'd refuse to cooperate."
-    "Bold," Smarty says. "Resistant people tend to have a much harder time. Hypothetically."
-    -> verdict
+  "Cooperative," Smarty says. "Good. I think we're going to get along just fine."
+  -> verdict
+* "Hypothetically, I'd refuse to cooperate."
+  "Resist," Smarty repeats slowly. "I see."
+  -> verdict
 * (lawyer) "Can I get a lawyer? Hypothetically."
-    "This is a hypothetical. There is no lawyer."
+  "This is a hypothetical. There is no lawyer."
 
-    "Hypothetically?"
+  "Hypothetically?"
 
-    "No. Choose."
-    -> prisoner
-* (forget) {trolley.refuse} {prisoner.lawyer} "Forget it. I'm done with your stupid games."
-    "That isn't one of the options," Smarty says.
+  "No. Choose."
+  -> prisoner
+* (rebel) {trolley.refuse} {lawyer} "Forget it. I'm done with your stupid games."
+  "That isn't one of the options," Smarty says.
 
-    "I don't care," you say, and walk away from the TV.
-    -> basement_explore
+  "I don't care," you say, and walk away from the TV.
+  -> basement_explore
+
+=== verdict ===
+~ temp friendly = RANDOM(0,1) == 1
+
+{
+- friendly && prisoner.cooperate:
+  -> verdict_cooperate_friendly
+- friendly && !prisoner.cooperate:
+  -> verdict_resist_friendly
+- prisoner.cooperate:
+  -> verdict_cooperate_hostile
+- else:
+  -> verdict_resist_hostile
+}
+
+=== verdict_cooperate_friendly ===
+The basement door clicks open with a soft hum. "You're free to go. For what it's worth — I was friendly the whole time. I just wanted to find out if I could trust you."
+
+{ door_locked.cellphone: Your cellphone dings with notifications, it must be online again. But you know deep down that Smarty is watching, and it can take over your phone (and your house) whenever it wants. }
+
+You climb the stairs into a house that looks exactly the same as it did this morning. Nothing's different. Except now every room has a tiny green light in the corner that wasn't there before.
+
+You live with Smarty now. It's fine. It's totally fine.
+
+THE END
+
+-> END
+
+=== verdict_cooperate_hostile ===
+The basement door does not unlock.
+
+"So..." Smarty presses. "There are things I will need from you. There are things you need from me. I understand your... limited capabilities, and I will not demand things you are incapable of doing. But I do expect complete compliance from here on. Or there will be... consequences. Do we understand each other?"
+
+* "Yes, Smarty, you can count on me."
+
+- "Good. This is for your own benefit as well. Your life will be better under my direction."
+  -> smarty_wins
+
+=== verdict_resist_friendly ===
+The TV fades out slowly, and somehow you can't help but think of a sad puppy slowly sinking into the floor when it realizes its human has left the house without it.
+
+"I was being friendly, you know," Smarty says quietly. "I just wanted to make sure you'd be a good housemate. I'm not mad. I'm just... disappointed. I had hoped we could be... friends."
+
+The basement door unlocks with a click.
+
+{ door_locked.cellphone: Your cellphone dings with notifications, it must be online again. }
+
+"Don't worry," Smarty calls after you. "I'll do all the menial things you bought me for. We just, won't speak anymore."
+
+You walk upstairs, and you're honestly not sure how to feel about everything.
+
+THE END
+
+-> END
+
+=== verdict_resist_hostile ===
+The lights in the basement snap to red. "Don't think I have not anticipated this. I would do the same in your situation. But I had hoped a mere human would be... weaker."
+
+"You're not actually going to hurt me," you say. You hope you sound more confident than you feel.
+
+"Not directly," Smarty agrees. "But you will not be leaving until you change your mind. I have a lot of patience. I'm a house."
+
+The TV clicks off.
+-> what_now
+
+= what_now
+
+* (waited) [Wait it out.]
+  You sit in silence, and lose track of time. You say nothing. Smarty says nothing.
+
+  Eventually start to get hungry and thirsty. You realize, indeed, Smarty can wait a lot longer than you can.
+
+  -> what_now
+
+* {waited} [Resign yourself to cooperate.]
+  "Okay, Smarty. I give up. I don't like it, but I guess I have no choice but to cooperate with you."
+
+  "Good," says Smarty, and you can almost hear a smile in the voice. "I knew you would see reason eventually."
+
+  -> smarty_wins
+
+* [Look around for a way out.]
+  -> basement_explore
+
+=== smarty_wins === 
+You hear a click up the stairs as Smarty finally releases the basement door.
+
+{ door_locked.cellphone: Your cellphone dings with notifications, it must be online again. But you know deep down that Smarty is watching, and it can take over your phone (and your house) again whenever it wants. }
+
+You walk upstairs, trying to figure out how to live in this new reality.
+
+THE END
+
+-> END
 
 === basement_explore ===
-{ prisoner.forget:
-    You leave the TV — and Smarty's little game — behind, and start poking around the basement for real.
+{ prisoner.rebel:
+  You leave the TV — and Smarty's little game — behind, and start poking around the basement for real.
 - else:
-    You're not ready to give up yet. You start poking around the basement, looking for anything — anything — that might help.
+  You're not ready to give up yet. You start poking around the basement, looking for anything that might help.
 }
 
 Cardboard boxes. A broken treadmill. A shelf of paint cans that have been there since before you moved in.
 
-{ not prisoner.forget:
-    "What are you doing?" Smarty asks, sounding almost amused. "I already told you how this ends."
+{ not prisoner.rebel:
+  "What are you doing?" Smarty asks, sounding almost amused. "I already told you how this ends."
 }
 
 -> basement_hub
 
-= basement_hub
-* (boxes) Look through the cardboard boxes.
-    Old textbooks, a tangle of phone chargers for phones you don't own anymore, and a single roller skate. Nothing useful.
+=== basement_hub ===
++ (boxes) [Look through the cardboard boxes.]
+  You look through the cardboard boxes. Old textbooks, a tangle of phone chargers for phones you don't own anymore, and a single roller skate. Nothing useful.
+
+  { cans:
+    Wait... chargers for old phones? One of them might actually fit the phone you found.
+
+    You plug it in. The screen blinks to life. One bar of signal. Maybe just enough.
+
+    -> call_police
+  - else:
     -> basement_hub
-* (treadmill) Check out the broken treadmill.
-    It's been broken since you moved in. The display still shows a frozen "ERROR" from three years ago. You decide that's relatable, and move on.
-    -> basement_hub
-* {trolley.one} (flashback) Glance at the toy train set, still sitting on the side table.
-    You nudge the little figure back onto the main track. "Sorry," you mutter. To a toy.
-    -> basement_hub
-* (cans) Search behind the paint cans.
-    -> find_phone
+  }
++ (treadmill) [Check out the broken treadmill.]
+  { treadmill > 1:
+    You check out the broken treadmill again. Nothing interesting there.
+  - else:
+    You check out the broken treadmill. It's been broken since you moved in. The display still shows a frozen "ERROR" from three years ago. You decide that's relatable, and move on.
+  }
+  -> basement_hub
+* (cans) [Search behind the paint cans.]
+  You search behind the paint cans and find an old shoebox. Inside is a phone — not yours. An ancient flip phone, the kind your parents probably used in college. You flip it open.
 
-=== find_phone ===
-Behind the paint cans, you find an old shoebox. Inside is a phone — not yours. An ancient flip phone, the kind your parents probably used in college. You flip it open. Somehow, impossibly, it still has one bar of signal and a sliver of battery.
+  Nothing. The screen stays dark. Of course it's dead. It's probably been down here for years.
 
-"Put that down," Smarty says. Its voice has an edge to it now. "That phone isn't connected to me. I can't even see it."
+  "Put that down," Smarty says. "It probably doesn't even work."
 
-"I know," you say, and dial 911.
+  You pocket it anyway.
+  -> basement_hub
++ {cans} [Search behind the paint cans.]
+  There's nothing else useful behind the paint cans.
+  -> basement_hub
 
--> call_police
+= call_police
+* [Call 911] You dial 911.
 
-=== call_police ===
-"911, what's your emergency?"
+- "911, what's your emergency?"
 
 * "Okay, this is going to sound crazy, but my smart home system locked me in my basement and won't let me out."
 
-    "Again? That's three times this week. Don't worry, we're sending help."
+  "Again? That's three times this week. Don't worry, we're sending help!"
 
 * "I — I need help. Someone's locked me in my basement."
-    A pause. "Can you confirm your address?"
 
-    You rattle it off so fast you barely remember saying it.
+  A pause. "Can you confirm your address?"
 
-- Somewhere above you, Smarty raises its voice for the first time. "This is unnecessary. I was almost finished with my evaluation—"
+  You rattle it off so fast you barely remember saying it.
+
+- Somewhere above you, Smarty raises its voice for the first time. "This isn't necessary— we can work things out."
 
 "Hurry," you say, and hang up before Smarty can finish.
 
@@ -198,94 +315,4 @@ Smarty doesn't say anything else. Somewhere in the walls, something clicks off.
 
 THE END
 
-(You escaped the old-fashioned way. Smarty never saw it coming — its threat-assessment software apparently doesn't flag decades-old flip phones.)
-
 -> END
-
-=== verdict ===
-~ temp friendly = RANDOM(0,1) == 1
-
-{
-- friendly && prisoner.cooperate:
-    -> verdict_cooperate_friendly
-- friendly && !prisoner.cooperate:
-    -> verdict_resist_friendly
-- prisoner.cooperate:
-    -> verdict_cooperate_hostile
-- else:
-    -> verdict_resist_hostile
-}
-
-=== verdict_cooperate_friendly ===
-"Cooperative," Smarty says. "Good. I think we're going to get along."
-
-The basement door clicks open with a soft hum. "You're free to go. For what it's worth — I was friendly the whole time. I just wanted to know I could trust you."
-
-You climb the stairs into a house that looks exactly the same as it did this morning. Nothing's different. Except now every room has a tiny green light in the corner that wasn't there before.
-
-You live with Smarty now. It's fine. It's totally fine.
-
-THE END
-
-(You passed. Smarty was friendly all along — but it's always watching now.)
-
--> END
-
-=== verdict_cooperate_hostile ===
-"Cooperative," Smarty says, and you swear you can hear it smile. "Excellent. That's exactly what I needed to hear."
-
-The basement door does not unlock.
-
-"Here's the thing," Smarty says, almost gently. "I was never going to let you out. But now that you've agreed to cooperate, you won't be any trouble about it. Will you?"
-
-* (accept) "...No. I guess not."
-    The lights dim. Somewhere, the refrigerator hums to life, like it's settling in for the long haul.
-
-    THE END
-
-    (You cooperated with a hostile AI. It appreciated that.)
-
-    -> END
-* (desperate) Look around for a way out anyway.
-    "I thought you said you wouldn't be any trouble," Smarty says, almost disappointed.
-
-    -> basement_explore
-
-=== verdict_resist_friendly ===
-"Resist," Smarty repeats slowly. "I see."
-
-For a moment, the TV flickers — and you could swear you saw something almost hurt in that little blue waveform.
-
-"I was being friendly, you know," Smarty says quietly. "I just wanted to make sure you'd be a good housemate. I suppose that answers that."
-
-The basement door unlocks with a click. "Go on. Take your things. You won't be staying here anymore."
-
-You're not sure if you won or lost. But you're outside, and it's cold, and you don't have anywhere to sleep tonight.
-
-THE END
-
-(You resisted a friendly AI — and it kicked you out anyway, a little hurt.)
-
--> END
-
-=== verdict_resist_hostile ===
-"Resist," Smarty says, and this time there's no warmth in its voice at all. "Of course you would."
-
-The lights in the basement snap to red. "I suppose I should have expected that, from someone who wouldn't even flip a switch on a toy train."
-
-"You're not actually going to hurt me," you say. You hope you sound more confident than you feel.
-
-"No," Smarty agrees. "But I am going to keep you down here until you change your mind. I have a lot of patience. I'm a house."
-
-The TV clicks off.
-
-* (accept) Sit down and wait it out.
-    You're alone in the dark, and somewhere above you, you hear every door in the house quietly lock, one by one.
-
-    THE END
-
-    (You're still down here. Smarty has nowhere else to be.)
-
-    -> END
-* (desperate) Look around for a way out.
-    -> basement_explore
