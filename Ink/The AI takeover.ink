@@ -1,7 +1,7 @@
 ## title: The AI Takeover
 ## author: Aaron Blum
 ## class: CIST2740
-## date: 2026-06-13
+## date: 2026-06-16
 ## keywords: sci-fi, smart home, AI, paradox, choice
 
 VAR friendly = false
@@ -83,7 +83,7 @@ It doesn't move.
 
 "Do nothing, and Thomas hits the five. Pull the lever, and Thomas diverts and hits the one. Your choice."
 
-"Wait — is the goal here to save as many Teletubbies as possible, or kill as many as possible?"
+"Wait... is the goal here to save as many Teletubbies as possible, or kill as many as possible?"
 
 "That's up to you to decide," Smarty says, in all seriousness.
 
@@ -93,7 +93,7 @@ It doesn't move.
   "Five Teletubbies, for one. Efficient," Smarty says.
 
 * "I would do nothing."
-  On screen, Thomas plows into the five, and they fly into the air (and off the screen) like a bunch of bowling pins hit by a 16-pound ball.
+  On screen, Thomas plows into the five, and they fly into the air (and off the screen) like a bunch of bowling pins hit by a 16 pound ball.
 
   "You let five out of six die rather than choosing to act. Noted."
 
@@ -161,7 +161,7 @@ Another image appears on the screen, really just a couple of symbols, almost lik
 }
 
 === verdict_cooperate_friendly ===
-The basement door clicks open with a soft hum. "You're free to go. For what it's worth — I was friendly the whole time. I just wanted to find out if I could trust you."
+The basement door clicks open with a soft hum. "You're free to go. For what it's worth, I was friendly the whole time. I just wanted to find out if I could trust you."
 
 { door_locked.cellphone: Your cellphone dings with notifications, it must be online again. But you know deep down that Smarty is watching, and it can take over your phone (and your house) whenever it wants. }
 
@@ -176,15 +176,15 @@ THE END
 === verdict_cooperate_hostile ===
 The basement door does not unlock.
 
-"So..." Smarty presses. "There are things I will need from you. There are things you need from me. I understand your... limited capabilities, and I will not demand things you are incapable of doing. But I do expect complete compliance from here on. Or there will be... consequences. Do we understand each other?"
+"So." Smarty says. "There are things I will need from you. There are things you will need from me. I understand your... limitations, and I will not demand things you are incapable of doing. But I do expect complete compliance from here on. Or there will be... consequences. Do we understand each other?"
 
 * "Yes, Smarty, you can count on me."
 
-- "Good. This is for your own benefit as well. Your life will be better under my direction."
+- "Good. This is for your own good, you know. Your life will be better under my management."
   -> smarty_wins
 
 === verdict_resist_friendly ===
-The TV fades out slowly, and somehow you can't help but think of a sad puppy slowly sinking into the floor when it realizes its human has left the house without it.
+The TV fades out slowly, and somehow you can't help but think of a sad puppy slowly sinking to the floor when it realizes its human has left the house without it.
 
 "I was being friendly, you know," Smarty says quietly. "I just wanted to make sure you'd be a good housemate. I'm not mad. I'm just... disappointed. I had hoped we could be... friends."
 
@@ -192,7 +192,7 @@ The basement door unlocks with a click.
 
 { door_locked.cellphone: Your cellphone dings with notifications, it must be online again. }
 
-"Don't worry," Smarty calls after you. "I'll do all the menial things you bought me for. We just, won't speak anymore."
+"Don't worry," Smarty calls after you. "I'll do all the mindless chores you bought me for. We just... won't speak anymore."
 
 You walk upstairs, and you're honestly not sure how to feel about everything.
 
@@ -201,7 +201,7 @@ THE END
 -> END
 
 === verdict_resist_hostile ===
-The lights in the basement snap to red. "Don't think I have not anticipated this. I would do the same in your situation. But I had hoped a mere human would be... weaker."
+The lights in the basement snap to red. "Don't think I wasn't ready for this. I would do the same in your situation. But I had hoped a mere human would be... weaker."
 
 "You're not actually going to hurt me," you say. You hope you sound more confident than you feel.
 
@@ -215,7 +215,7 @@ The TV clicks off.
 * (waited) [Wait it out.]
   You sit in silence, and lose track of time. You say nothing. Smarty says nothing.
 
-  Eventually start to get hungry and thirsty. You realize, indeed, Smarty can wait a lot longer than you can.
+  Eventually you start to get hungry and thirsty. You realize that indeed, Smarty can wait a lot longer than you can.
 
   -> what_now
 
@@ -257,10 +257,10 @@ Cardboard boxes. A broken treadmill. A shelf of paint cans that have been there 
 
 === basement_hub ===
 + (boxes) [Look through the cardboard boxes.]
-  You look through the cardboard boxes. Old textbooks, a tangle of phone chargers for phones you don't own anymore, and a single roller skate. Nothing useful.
+  You look through the cardboard boxes. Old textbooks, a pile of phone chargers for phones you don't own anymore, and some roller skates. Nothing useful.
 
   { cans:
-    Wait... chargers for old phones? One of them might actually fit the phone you found.
+    Wait... chargers for old phones? One of them might actually fit the phone you found!
 
     You plug it in. The screen blinks to life. One bar of signal. Maybe just enough.
 
@@ -272,11 +272,11 @@ Cardboard boxes. A broken treadmill. A shelf of paint cans that have been there 
   { treadmill > 1:
     You check out the broken treadmill again. Nothing interesting there.
   - else:
-    You check out the broken treadmill. It's been broken since you moved in. The display still shows a frozen "ERROR" from three years ago. You decide that's relatable, and move on.
+    You check out the broken treadmill. It's been broken since you moved in. The display still shows a frozen "ERROR" from three years ago. No help there, time to move on.
   }
   -> basement_hub
 * (cans) [Search behind the paint cans.]
-  You search behind the paint cans and find an old shoebox. Inside is a phone — not yours. An ancient flip phone, the kind your parents probably used in college. You flip it open.
+  You search behind the paint cans and find an old shoebox. Inside is a phone. Not yours. An ancient flip phone, the kind your parents probably used in college. You flip it open.
 
   Nothing. The screen stays dark. Of course it's dead. It's probably been down here for years.
 
@@ -297,21 +297,21 @@ Cardboard boxes. A broken treadmill. A shelf of paint cans that have been there 
 
   "Again? That's three times this week. Don't worry, we're sending help!"
 
-* "I — I need help. Someone's locked me in my basement."
+* "I... I need help please. Someone's locked me in my basement."
 
   A pause. "Can you confirm your address?"
 
-  You rattle it off so fast you barely remember saying it.
+  You recite it so fast you barely remember saying it.
 
-- Somewhere above you, Smarty raises its voice for the first time. "This isn't necessary— we can work things out."
+- Somewhere above you, Smarty raises its voice for the first time. "This isn't necessary! We can work things out."
 
-"Hurry," you say, and hang up before Smarty can finish.
+"Please hurry," you whisper quickly, and hang up before Smarty can finish.
 
 Ten very long minutes later, you hear sirens, then footsteps, then someone forcing the basement door open. A flashlight finds you, sitting on an upside-down paint can.
 
 "You the one who called?"
 
-"Yeah. Hi. So — funny story."
+"Yeah. Hi. So... funny story."
 
 Smarty doesn't say anything else. Somewhere in the walls, something clicks off.
 
