@@ -1,13 +1,13 @@
-# title: The Poor Shepherd
-# author: Aaron Blum
-# class: CIST2740
-# date: 2026-06-22
-# keywords:
+## title: The Poor Shepherd
+## author: Aaron Blum
+## class: CIST2740
+## date: 2026-06-23
+## keywords: fairy tale, fantasy, shepherd, loyalty, class choice, redemption
 
 VAR warrior = false
 VAR wizard = false
 VAR thief = false
-VAR debug = true
+VAR debug = false
 
 -> act_1
 
@@ -247,7 +247,7 @@ Two torches flicker at the front gate, where you can make out a pair of guards s
 
 To one side of the castle, a small river catches the moonlight as it flows past. You notice something odd — part of the river has been diverted, and a dark channel runs right into the base of the castle wall. The water supply, most likely. The channel is narrow and the water looks cold and black. But it goes in.
 
-Then there's the wall itself. Rough stone, with plenty of handholds. It's not small, exactly. But it's not as tall as you feared.
+Then there's the wall itself. Rough stone, with plenty of handholds. It's not small, exactly, but it's not as tall as you feared.
 
 You take a slow breath. Three ways in. One chance to get Willow back.
 -> choose_approach
@@ -279,7 +279,7 @@ You're far enough out that they probably can't see you very well, but can see th
 { thief:
 You take in the scene quickly. Two guards, torchlight, open ground around the gate. If you were going to do this, you'd probably have to slink along the wall in the darkness and then either wait for them to leave their post, or else create a distraction and slip past. Your hand drifts to your dagger. Rook always said to avoid a fight when you can — but if it came to it, you could maybe handle them.
 
-You wave and smile, "Sorry just passing by!" and conspiciously walk away until you're back in darkness. You consider whether to go through with this plan.
+You wave and smile, "Sorry just passing by!" and conspicuously walk away until you're back in darkness. You consider whether to go through with this plan.
 }
 
 + {warrior} [Try to fight your way past the guards.]
@@ -627,7 +627,7 @@ His sword is in his hand as if it had always been there — one smooth motion, n
 { wizard:
 You start casting your spell. It's not a deadly one, but it should knock him out for a while and give you some time to look around better.
 
-Unfortunately, Lord Don doesn't have even a speck of hesitation- or of mercy. He crosses the room faster than you can get the next word out. Your spell dies on your lips.
+Unfortunately, Lord Don doesn't have even a speck of hesitation or mercy. He crosses the room faster than you can get the next word out. Your spell dies on your lips.
 -> game_over
 }
 
