@@ -16,7 +16,7 @@ Act 1: Lord and Shepherd
 
 Once upon a time, in a kingdom far, far away, there was a poor shepherd who was struggling to keep his farm going. And that shepherd was YOU.
 
-You've had a bad year, some of your sheep got sick and died. You haven't made a lot of money lately. But at least you have best friend, an adorable, fluffy, loyal, loving sheep dog named Willow. Willow makes you happy when times are tough, and she's the best sheep dog you've ever seen in your whole life.
+You've had a bad year, some of your sheep got sick and died. You haven't made a lot of money lately. But at least you have a best friend, an adorable, fluffy, loyal, loving sheep dog named Willow. Willow makes you happy when times are tough, and she's the best sheep dog you've ever seen in your whole life.
 
 One terrible day, the local lord, Lord Don, comes to your farm and demands a tax payment.
 
@@ -87,7 +87,7 @@ Aldric is quiet for a moment. He studies you carefully.
 "I can't risk my people without pay. But... I'll tell you what I can do instead. I see potential in you. It will be hard, but I can train you, teach you to fight. Teach you to be brave, to stand up for yourself and the ones you love. I can make you strong, so that you'll be able to face Lord Don. What do you say?"
 
 * [Accept Aldric's offer. You'll become a warrior.]
-    "It's not right for Lord Don to bully people like this, and I would do anything for Willow. I want to be be a warrior."
+    "It's not right for Lord Don to bully people like this, and I would do anything for Willow. I want to be a warrior."
     -> warrior_accept
 * [Thank him and try another guild.]
     "Thank you, Captain. I need some time to consider though."
@@ -98,7 +98,7 @@ Aldric is quiet for a moment. He studies you carefully.
 You return to the Warrior's Guild. Captain Aldric remembers you. "Have you changed your mind, shepherd? Are you ready to become a warrior?"
 
 * [Accept Aldric's offer. You'll become a warrior.]
-    "It's not right for Lord Don to bully people like this, and I would do anything for Willow. I want to be be a warrior."
+    "It's not right for Lord Don to bully people like this, and I would do anything for Willow. I want to be a warrior."
     -> warrior_accept
 * [Thank him and try another guild.]
     "Thank you, Captain. I need more time to consider though."
@@ -268,11 +268,11 @@ You take a slow breath. Three ways in. One chance to get Willow back.
     -> scout_wall_again
 
 = scout_gate
-You stroll down the hill toward the torchlight in plain sight. The two guards eye you as you approach.
+You move down onto the road and walk past the castle gate. The two guards eye you as you start to pass.
 
-"Hey! Stop there!" One of them steps forward. "What's your business?"
+"Hey! Stop there!" One of them calls. "What's your business?"
 
-You study them for a moment, noticing their worn, shabby leather armor. They're each armed with a club. You don't see any other guards around right now... you'd sort of expected more.
+You're far enough out that they probably can't see you very well, but can see them very clearly in the torchlight from the gate. You notice their worn, shabby leather armor. They're each armed with a club. You don't see any other guards around right now... you'd sort of expected more.
 
 { warrior: These guards might be the same ones who were there the day Lord Don took Willow, you think you might even recognize one. But somehow, they look different now. They terrified you before, but today you notice their poor posture, dirty uniforms, and shuffling steps. They don't look anything like trained soldiers, just cheap thugs Lord Don must have hired off the street. You've sparred with better fighters than these in the guild yard. }
 { wizard: Guards spent all their time standing around doing nothing. They're probably not that bright. Maybe you can fool them and get them to let you pass? }
@@ -289,16 +289,23 @@ You wave and smile, "Sorry just passing by!" and conspiciously walk away until y
 + {thief} [Try to sneak past the guards.]
     -> sneak_guards
 + [Back away and reconsider.]
-    { !thief: "Sorry, just passing by!" you shout, and walk away from the gate. }
+    { thief:
+      You leave the shadows near the gate and consider your other options.
+    - else:
+      "Sorry, just passing by!" you shout, and walk away from the gate.
+    }
     -> choose_approach
 
 = scout_gate_again
-The guards are still at their posts. One of them squints as you approach.
+The guards are still at their posts as you take another pass by the gate. One of them squints as you approach again.
 
 "You again. What do you want?"
 
-{ warrior: Same two men. Still sloppy. You're not worried. }
-{ !warrior: Nothing has changed. }
+{ warrior:
+  Same two men. Still sloppy. You're not worried.
+- else:
+  Nothing has changed.
+}
 
 + {warrior} [Try to fight your way past the guards.]
     -> fight_guards
@@ -307,7 +314,7 @@ The guards are still at their posts. One of them squints as you approach.
 + {thief} [Try to sneak past the guards.]
     -> sneak_guards
 + [Back away and reconsider.]
-    { !thief: "Sorry, I seem to be a bit lost! I'm sure I'll find my way!" They eye you suspiciously. Thankfully, they are probably too lazy to bother chasing you down. }
+    "Sorry, I seem to be a bit lost! I'm sure I'll find my way!" They eye you suspiciously, but they don't seem inclined to come chase you down.
     -> choose_approach
 
 = fight_guards
@@ -349,11 +356,17 @@ The guards exchange a look.
 
 "Tax emergencies," you say gravely, "do not keep business hours."
 
-They squint at you. You keep talking, deploying every long word and official-sounding phrase Archmage Lyra ever taught you. The guards look uncertain for a while. But uncertainty isn't the same as convinced. Eventually the bigger one folds his arms.
+They squint at you. You keep talking, deploying every long word and official-sounding phrase Archmage Lyra ever taught you. The guards look uncertain for a while. Finally, a strange look flickers across the face of the lead guard, and then a moment later his expression seems to change to one of humble apology.
 
-"No one does legitimate business in the middle of the night, friend. I don't care who you say you are."
+"Of course, of course! Right this way, sir. Apologies for the delay." He steps aside and gestures for you to proceed. He gives you half a bow.
 
-You reach for your magic — a bolt of light, something, anything — but your nerves are too frayed and nothing comes. The guards don't wait to find out what you were doing with your hands. A moment later you're face-down in the dirt, and they're dragging you toward the dungeon.
+"Hah," you think to yourself as you walk past. "I knew I could trick these goons."
+
+But your smug feeling vanishes instantly, replaced by a pain that takes away all other thoughts. As you step past the guard, he suddenly shifts and cracks you in the back of the head with his club. You never saw it coming. All you can do is lie on the ground, staring at the sky in cloudy agony.
+
+He leans over you and sneers. "You're quite the fool, aren't you? I know who you are. You're that shepherd Lord Don took the dog from a while back. I was there. I helped collar the stupid animal."
+
+A moment later they're dragging you toward the dungeon.
 
 GAME OVER
 
@@ -689,7 +702,7 @@ A young girl is standing in the doorway. Her face is very still.
 
 "You said Willow's owners were giving her up," she says. "You said she didn't belong to anyone anymore." Her voice drops. "Did you steal her?"
 
-"Mira... I can explain." he says.
+"Mira... I can explain," he says.
 
 "Tell me the truth."
 
@@ -735,15 +748,15 @@ Three steps to the shelf — quick and quiet. Your hand finds the iron box. The 
 
 Lord Don returns only an instant later. Your heart thumps. If you'd been only slightly slower, he would have caught you for sure.
 
-The moments pass in silence, until footsteps sound in the hall. Mira enters with Willow on a lead.
+The moments pass in silence, until footsteps sound in the hall. A little girl (this must be Mira) enters, and with her - your heart leaps with joy as you see Willow for the first time in months.
 
-Willow sees you. She loses her mind entirely. You hold out the coins to Don with one hand and try to keep Willow from climbing you with the other.
+Willow sees you too, and she loses her mind entirely. You hold out the coins to Don with one hand and try to hug and pet and hold Willow with the other.
 
 Mira watches all this with growing confusion and fear. "Papa," she says. "Why are you selling my dog?"
 
 Don opens his mouth. "I'm not. I'm collecting a debt. The shepherd owed—"
 
-"You told me she came from a farm where they didn't want her anymore." Mira's voice trembles just a little. "You said her owners had given her up."
+"You told me she came from a farm where they didn't want her anymore." Mira's voice trembles a little, and her eyes seem watery. "You said her owners had given her up."
 
 "I'm sorry," he says. But there's a sadness in his face, too, and perhaps... some shame? You get the idea that he's not entirely happy with the trade.
 
@@ -806,7 +819,9 @@ THE END
 -> END
 
 = ask_why
-"Why Willow?" you say. "She's not worth anything — not in gold, anyway. You could have taken a lamb. A tool. But you took a dog. And you kept her."
+You hesitate, looking at Lord Don, rethinking the entire situation and everything that led up to this.
+
+"Lord Don, why? Why did you take Willow? I understand your situation now, and I definitely understand being poor and desperate for gold. But Willow isn't worth much gold, and you didn't sell her. You kept her, fed her, obviously took care of her. And I don't think you really expected me to be able to pay you."
 
 Don doesn't answer right away.
 
@@ -814,25 +829,21 @@ Don doesn't answer right away.
 
 Don's hands go still on the desk.
 
-"We've had bad years," he says finally, not looking at anything in particular. "The whole district. I had tributes to pay and not enough to pay them with." He pauses. "I tried to make up the difference. At cards." A shorter pause. "I lost."
+"I don't know if you noticed, but you're not the only one who's had a couple of bad years — the whole district has." Now it's your turn to feel a little embarrassed. You've been so focused on your own problems, maybe you haven't been paying much attention to the world around you.
 
-He doesn't say how much. He doesn't need to.
+He continues. "I had my own tributes to pay, and not enough to pay them." He pauses. "I tried to make up the difference. At cards, dice, horse races." A shorter pause. "It did not go well. Things got bad here, my wife got sick..." he trails off briefly.
 
-"After her mother passed," he continues, "Mira stopped eating. Stopped going outside. She just sat." His voice is very flat and careful — the voice of someone keeping themselves tightly together. "I thought a dog would help. Something to take care of. Something that needed her."
+"After her mother passed," he continues, "Mira stopped eating. Stopped going outside. Stopped... living. When I saw Willow that day, I thought maybe, maybe she could bring my daughter back to me."
 
 He looks at Mira.
 
 "It worked," Mira says softly.
 
-"Yes," he says. "It did."
+The room is quiet. Willow finally breaks away from you, and goes to nuzzle Mira for a moment.
 
-The room is quiet.
+What he did was wrong. The months without Willow were real, and so was the grief. You don't think you can forgive Lord Don, but you do at last understand the terrible choices he made. But Mira... she didn't do anything wrong.
 
-What he did was wrong. You know that. The months without Willow were real, and so was the grief. But so is this — a man who made terrible choices for a reason you understand, even if you can't forgive it.
-
-You look at Mira.
-
-"Willow's going to have puppies someday," you say. "I'll make sure you get one. I promise."
+"Willow's going to have puppies someday soon," you say. "I'll make sure you get one. I promise."
 
 For a moment Mira's face doesn't change. Then something in it opens, just a little.
 
@@ -840,9 +851,9 @@ For a moment Mira's face doesn't change. Then something in it opens, just a litt
 
 You walk out into the morning with Willow at your side.
 
-[Epliogue.]
++ [Epilogue]
 
-A few weeks later, Lord Don and his daughter arrive at your farm.
+- A few months later, Lord Don and his daughter arrive at your farm.
 
 Don looks different. He stands straighter, and the tightness around his eyes has eased a little. He doesn't say much, but when he helps Mira down from the cart, there's something careful and deliberate about it — the way someone moves when they're trying to do things right.
 
@@ -854,7 +865,7 @@ She picks the smallest one up, and it immediately starts licking her face.
 
 Don stops beside you and watches her for a moment.
 
-"Things have been a little better lately," he says quietly. "Settled some old debts. Started repairs on the east wall." He pauses. "I wanted to say — making that promise, you didn't have to do that."
+"Things have been a little better lately," he says quietly. "I quit trying to gamble. Settled some old debts. Started cleaning the place up, a lot of it with my own two hands." He pauses. "I wanted to say — thanks."
 
 You watch Mira sitting cross-legged in the straw, the puppy in her lap.
 
