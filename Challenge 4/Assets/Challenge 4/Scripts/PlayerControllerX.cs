@@ -83,7 +83,7 @@ public class PlayerControllerX : MonoBehaviour
                 enemyRigidbody.AddForce(awayFromPlayer * normalStrength, ForceMode.Impulse);
             }
         }
-        else if (transform.position.y < -10)
+        else if (transform.position.y < -50)
         {
             Destroy(gameObject);
         }
