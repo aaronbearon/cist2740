@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,8 +31,13 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveInput = controls.Player.Move.ReadValue<Vector2>();
         float forwardInput = moveInput.y; // Up/Down (W/S or arrow keys)
-        playerRb.AddForce(focalPoint.transform.forward * forwardInput * playerSpeed * Time.deltaTime);
+        playerRb.AddForce(focalPoint.transform.forward * forwardInput * playerSpeed * Time.deltaTime * playerRb.mass);
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
+
+        if (this.gameObject.transform.position.y < -100)
+        {
+            SceneManager.LoadScene("Prototype 4");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,6 +48,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
             powerupIndicator.gameObject.SetActive(true);
+            playerRb.mass = 3.0f;
         }
     }
 
@@ -50,6 +57,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(7);
         hasPowerup = false;
         powerupIndicator.gameObject.SetActive(false);
+        playerRb.mass = 1.0f;
     }
 
     private void OnCollisionEnter(Collision collision)
