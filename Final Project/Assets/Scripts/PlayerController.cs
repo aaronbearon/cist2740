@@ -3,10 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float maxSpeed = 20f;
-    // mouse must be this far away (world units) to reach maxSpeed
+    // The mouse must be this far away (world units) to reach maxSpeed.
     private float fullSpeedDistance = 5f;
-    // within this distance the player stops so they don't jitter in place
+    // In this distance the player stops so they don't jitter in place.
     private float stopDistance = 0.2f;
+
+    private bool alive;
 
     private Animator playerAnim;
 
@@ -14,12 +16,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        alive = true;
         playerAnim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && alive)
         {
             Vector3 target = GetMouseWorldPosition();
             MoveToward(target);
@@ -53,5 +56,11 @@ public class PlayerController : MonoBehaviour
 
         // animate relative to max speed
         playerAnim.SetFloat("Speed_f", speed / maxSpeed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Game Over!");
+        alive = false;
     }
 }
