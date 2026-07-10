@@ -7,13 +7,17 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] animalPrefabs;
     public const int EXTRAS = 3;
 
-    // Spawn an animal every 0.1 seconds.
-    // TODO: increase spawn rate over time?
-    private float startDelay = 2;
-    private float spawnInterval = 0.1f;
+    // First, 2 seconds pass before animals start spawning.
+    // Second, an animal spawns once every 1/2 seconds.
+    // Third, once 5 seconds pass, the reciprocal of animalSpawnRate increases by 0.02 every second.
+    private float spawnRateRate = 1f;
+    private float spawnRateTimer = 5f;
+    public float animalSpawnRate;
+    private float animalSpawnTimer = 2f;
 
     void Start()
     {
+        animalSpawnRate = 2f;
         // Player = GameObject.Find("Player");
         for (int i = -EXTRAS; i <= EXTRAS; i++)
         {
@@ -23,13 +27,23 @@ public class SpawnManager : MonoBehaviour
                 tile.GetComponent<MoveTiles>().Player = Player;
             }
         }
-
-        InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
     }
 
     void Update()
     {
+        animalSpawnTimer -= Time.deltaTime;
+        if (animalSpawnTimer <= 0f)
+        {
+            SpawnRandomAnimal();
+            animalSpawnTimer = 1 / animalSpawnRate;
+        }
 
+        spawnRateTimer -= Time.deltaTime;
+        if (spawnRateTimer <= 0f)
+        {
+            animalSpawnRate += 0.02f;
+            spawnRateTimer = spawnRateRate;
+        }
     }
 
     void SpawnRandomAnimal()
@@ -37,57 +51,26 @@ public class SpawnManager : MonoBehaviour
         // Generate random animal index and spawn position.
         int animalIndex = Random.Range(0, animalPrefabs.Length);
 
-        float edge = 60.0f;
-        float spawnOffset = Random.Range(-edge, edge);
-        float finalX = 0.0f;
-        float finalZ = 0.0f;
-        float rotation = 0.0f;
-        float rotateIncrement = 45.0f;
-        int randomSide = Random.Range(0, 4);
-        if (randomSide < 1)
-        {
-            finalX = -spawnOffset;
-            finalZ = -edge;
-            rotation = (finalX * rotateIncrement / edge) + Random.Range(-rotateIncrement, rotateIncrement);
-        }
-        else if (randomSide < 2)
-        {
-            finalX = -edge;
-            finalZ = spawnOffset;
-            rotation = (finalZ * rotateIncrement / edge) + Random.Range(-rotateIncrement, rotateIncrement) + 90;
-        }
-        else if (randomSide < 3)
-        {
-            finalX = spawnOffset;
-            finalZ = edge;
-            rotation = (finalX * rotateIncrement / edge) + Random.Range(-rotateIncrement, rotateIncrement) + 180;
-        }
-        else if (randomSide < 4)
-        {
-            finalX = edge;
-            finalZ = -spawnOffset;
-            rotation = (finalZ * rotateIncrement / edge) + Random.Range(-rotateIncrement, rotateIncrement) + 270;
-        }
-        else
-        {
-            Debug.Log("Error, shouldn't get here!");
-        }
+        float unitCircleRotate = Random.Range(0f, 360f);
+        float spawnX = -Mathf.Cos(unitCircleRotate * Mathf.PI / 180) * 60;
+        float spawnZ = Mathf.Sin(unitCircleRotate * Mathf.PI / 180) * 60;
+        float finalRotation = unitCircleRotate + Random.Range(45f, 135f);
 
-        while (!(rotation > -180.0f && rotation <= 180.0f))
+        while (!(finalRotation > -180.0f && finalRotation <= 180.0f))
         {
-            if (rotation <= -180.0f)
+            if (finalRotation <= -180.0f)
             {
-                rotation += 360;
+                finalRotation += 360;
             }
 
-            if (rotation > 180.0f)
+            if (finalRotation > 180.0f)
             {
-                rotation -= 360;
+                finalRotation -= 360;
             }
         }
 
-        Vector3 spawnPos = new Vector3(finalX + Player.transform.position.x, 0, finalZ + Player.transform.position.z);
-        GameObject animal = Instantiate(animalPrefabs[animalIndex], spawnPos, Quaternion.Euler(0.0f, rotation, 0.0f));
+        Vector3 spawnPos = new Vector3(spawnX + Player.transform.position.x, 0, spawnZ + Player.transform.position.z);
+        GameObject animal = Instantiate(animalPrefabs[animalIndex], spawnPos, Quaternion.Euler(0.0f, finalRotation, 0.0f));
         animal.GetComponent<MoveForward>().Player = Player;
     }
 }

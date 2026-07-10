@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float maxSpeed = 20f;
+    public float maxSpeed;
     // The mouse must be this far away (world units) to reach maxSpeed.
     private float fullSpeedDistance = 5f;
     // In this distance the player stops so they don't jitter in place.
@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool alive;
 
     private Animator playerAnim;
+    public ParticleSystem explosionParticle;
 
     private static readonly Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
@@ -62,5 +63,8 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Game Over!");
         alive = false;
+        playerAnim.SetBool("Death_b", true);
+        playerAnim.SetInteger("DeathType_int", 1);
+        explosionParticle.Play();
     }
 }

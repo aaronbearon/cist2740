@@ -1318,6 +1318,7 @@ MonoBehaviour:
   - {fileID: 5070645255083281059, guid: 30db1e96c3e5cbc42be7fc45fe9d7762, type: 3}
   - {fileID: 4678220127409685871, guid: c53c58dfb8757a24e95b5ae734ca0de3, type: 3}
   - {fileID: 1073343465672349861, guid: 8ffe7c67f1ec772448c6a4952844d7cf, type: 3}
+  animalSpawnRate: 2
 --- !u!1 &1625278363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,6 +1811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 20
+  explosionParticle: {fileID: 9125212449759046732, guid: cb7cd9b0c56a24d49a40784bd3203ae6, type: 3}
 --- !u!65 &2035578104
 BoxCollider:
   m_ObjectHideFlags: 0
