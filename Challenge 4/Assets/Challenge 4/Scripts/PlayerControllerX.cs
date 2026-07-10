@@ -14,6 +14,8 @@ public class PlayerControllerX : MonoBehaviour
     private float normalStrength = 10; // how hard to hit enemy without powerup
     private float powerupStrength = 25; // how hard to hit enemy with powerup
 
+    public bool alive = true;
+
     private InputSystem_Actions controls;
 
     void Awake()
@@ -40,9 +42,10 @@ public class PlayerControllerX : MonoBehaviour
 
         // Set powerup indicator position to beneath player
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.6f, 0);
-        if (transform.position.y < -10)
+        if (transform.position.y < -50)
         {
-            Destroy(gameObject);
+            alive = false;
+            transform.position = new Vector3(0, 1, -7);
         }
     }
 
@@ -82,10 +85,6 @@ public class PlayerControllerX : MonoBehaviour
             {
                 enemyRigidbody.AddForce(awayFromPlayer * normalStrength, ForceMode.Impulse);
             }
-        }
-        else if (transform.position.y < -50)
-        {
-            Destroy(gameObject);
         }
     }
 }
