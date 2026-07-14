@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject Player;
     public GameObject groundPrefab;
     public GameObject[] animalPrefabs;
+    public GameObject dinosaurPrefab;
     public GameObject gameOverScreen;
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
@@ -17,19 +18,19 @@ public class SpawnManager : MonoBehaviour
     public Button exitButton;
     public const int EXTRAS = 3;
 
-    // First, 2 seconds pass before animals start spawning.
-    // Second, an animal spawns once every 1/2 seconds.
-    // Third, once 5 seconds pass, the reciprocal of animalSpawnRate increases by 0.02 every second.
-    private float spawnRateRate = 1f;
-    private float spawnRateTimer = 5f;
+    // animalSpawnRate ramps from baseSpawnRate, starting spawnRateRampDelay seconds after
+    // level load, increasing by spawnRateRampPerSecond every second after that.
+    private const float baseSpawnRate = 2f;
+    private const float spawnRateRampDelay = 5f;
+    private const float spawnRateRampPerSecond = 0.02f;
     public float animalSpawnRate;
     private float animalSpawnTimer = 2f;
+    private float dinosaurSpawnInterval = 30f;
+    private float dinosaurSpawnTimer = 30f;
 
     void Start()
     {
         gameOverScreen.gameObject.SetActive(false);
-        animalSpawnRate = 2f;
-        // Player = GameObject.Find("Player");
         for (int i = -EXTRAS; i <= EXTRAS; i++)
         {
             for (int j = -EXTRAS; j <= EXTRAS; j++)
@@ -44,6 +45,8 @@ public class SpawnManager : MonoBehaviour
     {
         if (PlayerController.Alive)
         {
+            animalSpawnRate = baseSpawnRate + spawnRateRampPerSecond * Mathf.Max(0f, Time.timeSinceLevelLoad - spawnRateRampDelay);
+
             animalSpawnTimer -= Time.deltaTime;
             if (animalSpawnTimer <= 0f)
             {
@@ -51,11 +54,11 @@ public class SpawnManager : MonoBehaviour
                 animalSpawnTimer = 1 / animalSpawnRate;
             }
 
-            spawnRateTimer -= Time.deltaTime;
-            if (spawnRateTimer <= 0f)
+            dinosaurSpawnTimer -= Time.deltaTime;
+            if (dinosaurSpawnTimer <= 0f)
             {
-                animalSpawnRate += 0.02f;
-                spawnRateTimer = spawnRateRate;
+                SpawnDinosaur();
+                dinosaurSpawnTimer += dinosaurSpawnInterval;
             }
         }
     }
@@ -88,6 +91,32 @@ public class SpawnManager : MonoBehaviour
         animal.GetComponent<MoveForward>().Player = Player;
     }
 
+    void SpawnDinosaur()
+    {
+        float unitCircleRotate = Random.Range(0f, 360f);
+        float spawnX = -Mathf.Cos(unitCircleRotate * Mathf.PI / 180) * 60;
+        float spawnZ = Mathf.Sin(unitCircleRotate * Mathf.PI / 180) * 60;
+        float finalRotation = unitCircleRotate + Random.Range(70f, 110f);
+
+        while (!(finalRotation > -180.0f && finalRotation <= 180.0f))
+        {
+            if (finalRotation <= -180.0f)
+            {
+                finalRotation += 360;
+            }
+
+            if (finalRotation > 180.0f)
+            {
+                finalRotation -= 360;
+            }
+        }
+
+        Vector3 spawnPos = new Vector3(spawnX + Player.transform.position.x, 0, spawnZ + Player.transform.position.z);
+        GameObject dinosaur = Instantiate(dinosaurPrefab, spawnPos, Quaternion.Euler(0.0f, finalRotation, 0.0f));
+        dinosaur.GetComponent<MoveForward>().Player = Player;
+        dinosaur.GetComponent<TrackPlayer>().Player = Player;
+    }
+
     public void GameOver()
     {
         gameOverScreen.gameObject.SetActive(true);
@@ -95,7 +124,7 @@ public class SpawnManager : MonoBehaviour
 
     public void RestartMode()
     {
-        SceneManager.LoadScene("Prototype 2");
+        SceneManager.LoadScene("Game");
     }
 
     public void MenuTitle()
@@ -105,6 +134,10 @@ public class SpawnManager : MonoBehaviour
 
     public void ExitGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }

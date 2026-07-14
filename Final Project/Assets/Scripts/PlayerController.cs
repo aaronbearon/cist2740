@@ -12,7 +12,10 @@ public class PlayerController : MonoBehaviour
     private float stopDistance = 0.2f;
 
     private Animator playerAnim;
+    private AudioSource playerAudio;
     public ParticleSystem explosionParticle;
+    public AudioClip crashSound;
+    public SpawnManager spawnManager;
 
     private static readonly Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         Alive = true;
         playerAnim = GetComponent<Animator>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -67,7 +71,9 @@ public class PlayerController : MonoBehaviour
                 speed = Mathf.Clamp(dist / fullSpeedDistance * maxSpeed, 0f, maxSpeed);
             }
         }
-        transform.position += delta.normalized * speed * Time.deltaTime;
+
+        float multiplier = Mathf.Pow(1f + 0.02f * Time.timeSinceLevelLoad, 1f / 3f);
+        transform.position += delta.normalized * speed * Time.deltaTime * multiplier;
 
         // animate relative to max speed
         playerAnim.SetFloat("Speed_f", speed / maxSpeed);
@@ -75,11 +81,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Game Over!");
-        Alive = false;
-        GameObject.Find("Spawn Manager").GetComponent<SpawnManager>().GameOver();
-        playerAnim.SetBool("Death_b", true);
-        playerAnim.SetInteger("DeathType_int", 1);
-        explosionParticle.Play();
+        if (Alive)
+        {
+            Debug.Log("Game Over!");
+            Alive = false;
+            spawnManager.GameOver();
+            playerAnim.SetBool("Death_b", true);
+            playerAnim.SetInteger("DeathType_int", 1);
+            explosionParticle.Play();
+            playerAudio.PlayOneShot(crashSound, 1.0f);
+        }
     }
 }
