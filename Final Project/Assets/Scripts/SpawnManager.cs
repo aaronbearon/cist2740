@@ -92,4 +92,19 @@ public class SpawnManager : MonoBehaviour
     {
         gameOverScreen.gameObject.SetActive(true);
     }
+
+    public void RestartMode()
+    {
+        SceneManager.LoadScene("Prototype 2");
+    }
+
+    public void MenuTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
