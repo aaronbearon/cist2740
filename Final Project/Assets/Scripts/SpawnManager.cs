@@ -1,10 +1,20 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
     public GameObject Player;
     public GameObject groundPrefab;
     public GameObject[] animalPrefabs;
+    public GameObject gameOverScreen;
+    public TextMeshProUGUI gameOverText;
+    public Button restartButton;
+    public Button menuButton;
+    public Button exitButton;
     public const int EXTRAS = 3;
 
     // First, 2 seconds pass before animals start spawning.
@@ -17,6 +27,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
+        gameOverScreen.gameObject.SetActive(false);
         animalSpawnRate = 2f;
         // Player = GameObject.Find("Player");
         for (int i = -EXTRAS; i <= EXTRAS; i++)
@@ -31,18 +42,21 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        animalSpawnTimer -= Time.deltaTime;
-        if (animalSpawnTimer <= 0f)
+        if (PlayerController.Alive)
         {
-            SpawnRandomAnimal();
-            animalSpawnTimer = 1 / animalSpawnRate;
-        }
+            animalSpawnTimer -= Time.deltaTime;
+            if (animalSpawnTimer <= 0f)
+            {
+                SpawnRandomAnimal();
+                animalSpawnTimer = 1 / animalSpawnRate;
+            }
 
-        spawnRateTimer -= Time.deltaTime;
-        if (spawnRateTimer <= 0f)
-        {
-            animalSpawnRate += 0.02f;
-            spawnRateTimer = spawnRateRate;
+            spawnRateTimer -= Time.deltaTime;
+            if (spawnRateTimer <= 0f)
+            {
+                animalSpawnRate += 0.02f;
+                spawnRateTimer = spawnRateRate;
+            }
         }
     }
 
@@ -72,5 +86,10 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPos = new Vector3(spawnX + Player.transform.position.x, 0, spawnZ + Player.transform.position.z);
         GameObject animal = Instantiate(animalPrefabs[animalIndex], spawnPos, Quaternion.Euler(0.0f, finalRotation, 0.0f));
         animal.GetComponent<MoveForward>().Player = Player;
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.gameObject.SetActive(true);
     }
 }

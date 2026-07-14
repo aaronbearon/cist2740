@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static bool Frenzy = false;
+    public static bool Alive;
+
     public float maxSpeed;
     // The mouse must be this far away (world units) to reach maxSpeed.
     private float fullSpeedDistance = 5f;
     // In this distance the player stops so they don't jitter in place.
     private float stopDistance = 0.2f;
-
-    private bool alive;
 
     private Animator playerAnim;
     public ParticleSystem explosionParticle;
@@ -17,20 +18,20 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        alive = true;
+        Alive = true;
         playerAnim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && alive)
+        if (Alive)
         {
             Vector3 target = GetMouseWorldPosition();
             MoveToward(target);
         }
         else
         {
-            // animate relative to max speed
+            // No animation on death
             playerAnim.SetFloat("Speed_f", 0);
         }
     }
@@ -47,12 +48,25 @@ public class PlayerController : MonoBehaviour
         Vector3 delta = target - transform.position;
         delta.y = 0f;
 
-        float dist = delta.magnitude;
-        if (dist < stopDistance) return;
-
         transform.rotation = Quaternion.LookRotation(delta);
 
-        float speed = Mathf.Clamp(dist / fullSpeedDistance * maxSpeed, 0f, maxSpeed);
+        float speed;
+        if (Frenzy)
+        {
+            speed = maxSpeed;
+        }
+        else
+        {
+            float dist = delta.magnitude;
+            if (dist < stopDistance)
+            {
+                speed = 0;
+            }
+            else
+            {
+                speed = Mathf.Clamp(dist / fullSpeedDistance * maxSpeed, 0f, maxSpeed);
+            }
+        }
         transform.position += delta.normalized * speed * Time.deltaTime;
 
         // animate relative to max speed
@@ -62,7 +76,8 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Game Over!");
-        alive = false;
+        Alive = false;
+        GameObject.Find("Spawn Manager").GetComponent<SpawnManager>().GameOver();
         playerAnim.SetBool("Death_b", true);
         playerAnim.SetInteger("DeathType_int", 1);
         explosionParticle.Play();
