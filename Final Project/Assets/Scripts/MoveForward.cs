@@ -5,7 +5,6 @@ public class MoveForward : MonoBehaviour
     public GameObject Player;
     public float speed;
 
-    // Update is called once per frame
     void Update()
     {
         float multiplier = Mathf.Pow(1f + 0.02f * Time.timeSinceLevelLoad, 1f / 3f);
@@ -14,6 +13,10 @@ public class MoveForward : MonoBehaviour
         float deltaZ = transform.position.z - Player.transform.position.z;
         if ((deltaX * deltaX) + (deltaZ * deltaZ) > 8100)
         {
+            if (gameObject.CompareTag("Dinosaur"))
+            {
+                SpawnManager.dinosaursCleared += 1;
+            }
             Destroy(gameObject);
         }
     }

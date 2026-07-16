@@ -9,13 +9,11 @@ public class MoveTiles : MonoBehaviour
     private const int TILES = SpawnManager.EXTRAS * 2 + 1;
     private const float TRANSLATE = SIZE * TILES;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         transform.position = new Vector3(transform.position.x * SIZE, 0, transform.position.z * SIZE);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (transform.position.x + SNAPDIST < Player.transform.position.x)

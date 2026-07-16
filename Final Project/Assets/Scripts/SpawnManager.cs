@@ -13,6 +13,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject dinosaurPrefab;
     public GameObject gameOverScreen;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI dinosaurText;
     public Button restartButton;
     public Button menuButton;
     public Button exitButton;
@@ -23,13 +25,18 @@ public class SpawnManager : MonoBehaviour
     private const float baseSpawnRate = 2f;
     private const float spawnRateRampDelay = 5f;
     private const float spawnRateRampPerSecond = 0.02f;
+
     public float animalSpawnRate;
+
     private float animalSpawnTimer = 2f;
     private float dinosaurSpawnInterval = 30f;
     private float dinosaurSpawnTimer = 30f;
 
+    public static int dinosaursCleared;
+
     void Start()
     {
+        dinosaursCleared = 0;
         gameOverScreen.gameObject.SetActive(false);
         for (int i = -EXTRAS; i <= EXTRAS; i++)
         {
@@ -60,6 +67,9 @@ public class SpawnManager : MonoBehaviour
                 SpawnDinosaur();
                 dinosaurSpawnTimer += dinosaurSpawnInterval;
             }
+
+            timeText.text = "Time: " + Mathf.FloorToInt(Time.timeSinceLevelLoad);
+            dinosaurText.text = "Dinos: " + dinosaursCleared;
         }
     }
 

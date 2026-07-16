@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dinosaur
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 23dd6900b87c85b49b08205c1b1ea91e, type: 3}
+      propertyPath: m_TagString
+      value: Dinosaur
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

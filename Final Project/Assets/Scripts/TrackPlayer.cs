@@ -8,14 +8,15 @@ public class TrackPlayer : MonoBehaviour
 
     private AudioSource dinosaurAudio;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dinosaurAudio = GetComponent<AudioSource>();
-        dinosaurAudio.PlayOneShot(roarSound);
+        if (gameObject.CompareTag("Dinosaur"))
+        {
+            dinosaurAudio = GetComponent<AudioSource>();
+            dinosaurAudio.PlayOneShot(roarSound);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 delta = Player.transform.position - transform.position;
