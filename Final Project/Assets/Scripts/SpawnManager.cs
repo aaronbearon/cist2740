@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
+    private AudioSource audioSource;
+    public AudioClip mainMusic;
     public GameObject Player;
     public GameObject groundPrefab;
     public GameObject[] animalPrefabs;
@@ -30,12 +32,20 @@ public class SpawnManager : MonoBehaviour
 
     private float animalSpawnTimer = 2f;
     private float dinosaurSpawnInterval = 30f;
-    private float dinosaurSpawnTimer = 30f;
+    private float nextDinosaur = 30f;
+    private float pitchShift = -2f;
+    public float dinosaurSpawnTime = 0;
 
     public static int dinosaursCleared;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = mainMusic;
+        audioSource.playOnAwake = true;
+        audioSource.loop = true;
+        audioSource.pitch = Mathf.Pow(2f, pitchShift / 12f);
+        audioSource.Play();
         dinosaursCleared = 0;
         gameOverScreen.gameObject.SetActive(false);
         for (int i = -EXTRAS; i <= EXTRAS; i++)
@@ -61,11 +71,13 @@ public class SpawnManager : MonoBehaviour
                 animalSpawnTimer = 1 / animalSpawnRate;
             }
 
-            dinosaurSpawnTimer -= Time.deltaTime;
-            if (dinosaurSpawnTimer <= 0f)
+            dinosaurSpawnTime += Time.deltaTime;
+            if (dinosaurSpawnTime >= nextDinosaur)
             {
                 SpawnDinosaur();
-                dinosaurSpawnTimer += dinosaurSpawnInterval;
+                nextDinosaur += dinosaurSpawnInterval;
+                pitchShift += 1f;
+                audioSource.pitch = Mathf.Pow(2f, pitchShift / 12f);
             }
 
             timeText.text = "Time: " + Mathf.FloorToInt(Time.timeSinceLevelLoad);
@@ -129,6 +141,7 @@ public class SpawnManager : MonoBehaviour
 
     public void GameOver()
     {
+        audioSource.Stop();
         gameOverScreen.gameObject.SetActive(true);
     }
 

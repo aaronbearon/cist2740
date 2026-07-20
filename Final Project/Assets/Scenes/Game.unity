@@ -1299,6 +1299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1535306022}
   - component: {fileID: 1535306023}
+  - component: {fileID: 1535306024}
   m_Layer: 0
   m_Name: Spawn Manager
   m_TagString: Untagged
@@ -1333,6 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9973cf2376f540a4b9159620e6d53901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMusic: {fileID: 8300000, guid: e5f64c6be94adb64b827cbb9587170e2, type: 3}
   Player: {fileID: 2035578098}
   groundPrefab: {fileID: 734036443961318547, guid: 78d951fc2b918b9439f9da08257aced6, type: 3}
   animalPrefabs:
@@ -1353,6 +1355,104 @@ MonoBehaviour:
   menuButton: {fileID: 99674296}
   exitButton: {fileID: 1897628458}
   animalSpawnRate: 2
+  dinosaurSpawnTime: 0
+--- !u!82 &1535306024
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535306020}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1625278363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,6 +2293,8 @@ MonoBehaviour:
   maxSpeed: 20
   explosionParticle: {fileID: 1746378410}
   crashSound: {fileID: 8300000, guid: 913d6445ee8cc4152a9c18da590ee203, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 1a976ea99e32f6049a979deb3ad59114, type: 3}
+  mainMusic: {fileID: 8300000, guid: e5f64c6be94adb64b827cbb9587170e2, type: 3}
   spawnManager: {fileID: 1535306023}
 --- !u!65 &2035578104
 BoxCollider:

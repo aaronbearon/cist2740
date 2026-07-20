@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     public ParticleSystem explosionParticle;
     public AudioClip crashSound;
+    public AudioClip gameOverSound;
     public SpawnManager spawnManager;
 
     private static readonly Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
         }
 
         float multiplier = Mathf.Pow(1f + 0.02f * Time.timeSinceLevelLoad, 1f / 3f);
-        transform.position += delta.normalized * speed * Time.deltaTime * multiplier;
+        transform.position += delta.normalized * speed * Time.deltaTime * multiplier * 0.95f;
 
         // animate relative to max speed
         playerAnim.SetFloat("Speed_f", speed / maxSpeed);
@@ -89,7 +90,11 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("Death_b", true);
             playerAnim.SetInteger("DeathType_int", 1);
             explosionParticle.Play();
+            playerAudio.Stop();
+            playerAudio.loop = false;
+            playerAudio.pitch = 1f;
             playerAudio.PlayOneShot(crashSound, 1.0f);
+            playerAudio.PlayOneShot(gameOverSound, 1.0f);
         }
     }
 }
