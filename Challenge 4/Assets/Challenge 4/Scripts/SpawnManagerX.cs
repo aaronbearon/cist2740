@@ -13,7 +13,13 @@ public class SpawnManagerX : MonoBehaviour
     public int waveCount = 0;
 
 
-    public GameObject player; 
+    public GameObject player;
+    private PlayerControllerX playerControllerScript;
+
+    void Start()
+    {
+        playerControllerScript = player.GetComponent<PlayerControllerX>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -23,6 +29,11 @@ public class SpawnManagerX : MonoBehaviour
         if (enemyCount == 0)
         {
             SpawnEnemyWave(waveCount);
+        }
+
+        if (!playerControllerScript.alive)
+        {
+            waveCount = 1;
         }
     }
 

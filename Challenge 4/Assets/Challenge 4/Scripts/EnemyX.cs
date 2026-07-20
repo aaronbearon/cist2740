@@ -8,7 +8,7 @@ public class EnemyX : MonoBehaviour
     private GameObject player;
     private PlayerControllerX playerControllerScript;
 
-    private float timer = 0.1f;
+    private float timer = 0.02f;
     private bool timerOn = false;
 
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class EnemyX : MonoBehaviour
 
         if (!playerControllerScript.alive)
         {
-            enemyRb.AddForce(Vector3.up * 1000);
+            transform.position = new Vector3(transform.position.x, -10, transform.position.z);
             if (!timerOn)
             {
                 timerOn = true;
